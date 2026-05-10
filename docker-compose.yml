@@ -1,0 +1,49 @@
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: jewelry_store
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: manasi2210/the-jewel-nest-studio:latest
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: jewelry_store
+      SECRET_KEY: ${SECRET_KEY:-please-change-this-secret}
+      # Same-origin: the app serves the frontend, so CORS isn't used.
+      # If you front this with a separate origin (e.g. cdn.example.com),
+      # set CORS_ORIGIN to that exact URL.
+      CORS_ORIGIN: http://localhost:5000
+    ports:
+      - "5000:5000"
+    volumes:
+      - uploads:/app/uploads
+      - logs:/app/logs
+      - sessions:/app/flask_session
+
+volumes:
+  dbdata:
+  uploads:
+  logs:
+  sessions:

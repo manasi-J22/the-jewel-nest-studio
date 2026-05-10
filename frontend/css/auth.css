@@ -1,0 +1,61 @@
+/* Auth pages — login & register */
+.auth-wrap {
+  min-height: calc(100vh - var(--header-h));
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.auth-art {
+  background:
+    linear-gradient(140deg, rgba(0,0,0,.35), rgba(0,0,0,.05)),
+    url('https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=1400') center/cover;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 4rem;
+  color: #fff;
+}
+.auth-art h2 {
+  font-size: 2.5rem;
+  color: #fff;
+  max-width: 380px;
+  line-height: 1.15;
+}
+.auth-art p {
+  margin-top: 1rem;
+  max-width: 400px;
+  opacity: .85;
+}
+
+.auth-form-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  background: var(--bg);
+}
+.auth-form {
+  width: 100%;
+  max-width: 420px;
+  animation: fadeUp .6s ease both;
+}
+.auth-form h1 {
+  font-size: 2rem;
+  margin-bottom: .5rem;
+}
+.auth-form .sub {
+  color: var(--muted);
+  margin-bottom: 2rem;
+  font-size: .95rem;
+}
+.auth-form .swap {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: .9rem;
+  color: var(--muted);
+}
+.auth-form .swap a { color: var(--gold-deep); font-weight: 600; }
+
+@media (max-width: 800px) {
+  .auth-wrap { grid-template-columns: 1fr; }
+  .auth-art { display: none; }
+}

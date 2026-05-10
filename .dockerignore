@@ -1,0 +1,29 @@
+# Source control
+.git
+.gitignore
+.github
+
+# Python
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/.venv
+**/venv
+
+# Local secrets and runtime state — never bake into the image
+**/.env
+**/flask_session
+**/logs
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Editor / OS
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+
+# Docs that don't need to ship inside the image
+*.md
+!README.md
+LICENSE

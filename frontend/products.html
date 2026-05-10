@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — The Jewel Nest Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="header-slot"></div>
+
+  <main class="container" style="padding-top:3rem">
+    <div class="section-head" style="text-align:left;margin-bottom:2rem">
+      <span class="eyebrow">Collection</span>
+      <h2>Shop All Pieces</h2>
+    </div>
+
+    <div class="toolbar">
+      <div class="group">
+        <label for="f-search">Search</label>
+        <input id="f-search" type="search" placeholder="Search…">
+      </div>
+      <div class="group">
+        <label for="f-category">Category</label>
+        <select id="f-category"><option value="">All</option></select>
+      </div>
+      <div class="group">
+        <label>Price</label>
+        <input id="f-min" type="number" placeholder="Min" min="0" style="width:90px">
+        <input id="f-max" type="number" placeholder="Max" min="0" style="width:90px">
+      </div>
+      <div class="group" style="margin-left:auto">
+        <label for="f-sort">Sort</label>
+        <select id="f-sort">
+          <option value="newest">Newest</option>
+          <option value="price_asc">Price: Low → High</option>
+          <option value="price_desc">Price: High → Low</option>
+          <option value="rating">Top Rated</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="products-grid" id="products-grid"></div>
+  </main>
+
+  <div id="footer-slot"></div>
+  <script src="js/api.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>

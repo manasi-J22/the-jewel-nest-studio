@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — The Jewel Nest Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .co-grid { display: grid; grid-template-columns: 1fr 380px; gap: 2.5rem; padding: 3rem 0; }
+    .co-form, #checkout-summary {
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
+      padding: 1.75rem;
+    }
+    .co-form h3, #checkout-summary h3 { margin-bottom: 1.25rem; }
+    .co-items { list-style: none; }
+    .co-items li {
+      display: grid; grid-template-columns: 60px 1fr auto;
+      gap: 1rem; align-items: center; padding: .8rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .co-items img { width: 60px; height: 60px; object-fit: cover; border-radius: var(--radius); }
+    .co-items .muted { color: var(--muted); font-size: .8rem; }
+    #checkout-summary .row {
+      display: flex; justify-content: space-between; padding: 1rem 0;
+      font-weight: 600; font-size: 1.05rem; margin-top: .5rem;
+    }
+    .pay-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
+    .pay-options label {
+      border: 1px solid var(--line); padding: .8rem; border-radius: var(--radius);
+      text-align: center; cursor: pointer; font-size: .85rem;
+      letter-spacing: .1em; text-transform: uppercase; transition: all .2s;
+    }
+    .pay-options input { display: none; }
+    .pay-options input:checked + span {
+      color: var(--gold-deep); font-weight: 600;
+    }
+    .pay-options label:has(input:checked) {
+      border-color: var(--gold); background: var(--gold-soft);
+    }
+    @media (max-width: 800px) { .co-grid { grid-template-columns: 1fr; padding: 1.5rem 0; } }
+  </style>
+</head>
+<body>
+  <div id="header-slot"></div>
+  <main class="container">
+    <h1 style="padding-top:2.5rem">Checkout</h1>
+    <div class="co-grid">
+      <form class="co-form" id="checkout-form">
+        <h3>Shipping & Payment</h3>
+        <div class="field">
+          <label>Delivery Address</label>
+          <textarea name="address" required minlength="5" placeholder="Street, City, ZIP"></textarea>
+        </div>
+        <div class="field">
+          <label>Phone</label>
+          <input name="phone" type="tel" required>
+        </div>
+        <div class="field">
+          <label>Payment Method</label>
+          <div class="pay-options">
+            <label><input type="radio" name="payment_method" value="cod" checked><span>Cash on Delivery</span></label>
+            <label><input type="radio" name="payment_method" value="card"><span>Card</span></label>
+            <label><input type="radio" name="payment_method" value="upi"><span>UPI</span></label>
+          </div>
+          <div class="helper">Payment is simulated for this demo — no charge will be made.</div>
+        </div>
+        <div class="error-text" id="co-error"></div>
+        <button class="btn btn-gold btn-block" type="submit">Place Order</button>
+      </form>
+
+      <aside id="checkout-summary"></aside>
+    </div>
+  </main>
+  <div id="footer-slot"></div>
+  <script src="js/api.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

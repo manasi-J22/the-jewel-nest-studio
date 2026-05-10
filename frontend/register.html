@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account — The Jewel Nest Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+  <div id="header-slot"></div>
+
+  <div class="auth-wrap">
+    <div class="auth-art">
+      <div>
+        <h2>Begin your Jewel Nest story.</h2>
+        <p>Save favourites, track orders, and unlock private previews.</p>
+      </div>
+    </div>
+    <div class="auth-form-wrap">
+      <form class="auth-form" id="register-form">
+        <h1>Create account</h1>
+        <p class="sub">It only takes a moment.</p>
+
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" name="name" required minlength="2">
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" name="email" required>
+        </div>
+        <div class="field">
+          <label>Phone (optional)</label>
+          <input type="tel" name="phone">
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" name="password" required minlength="6">
+          <div class="helper">At least 6 characters.</div>
+        </div>
+        <div class="field">
+          <label>Confirm Password</label>
+          <input type="password" name="confirm" required minlength="6">
+        </div>
+        <div class="error-text" id="form-error"></div>
+        <button type="submit" class="btn btn-block">Create Account</button>
+        <div class="swap">Already have an account? <a href="login.html">Sign in</a></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => renderHeader());</script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

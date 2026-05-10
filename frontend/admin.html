@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — The Jewel Nest Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <div id="header-slot"></div>
+
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <h4>Admin</h4>
+      <nav>
+        <a href="#dashboard" class="admin-nav active" data-tab="dashboard">Dashboard</a>
+        <a href="#products"  class="admin-nav" data-tab="products">Products</a>
+        <a href="#orders"    class="admin-nav" data-tab="orders">Orders</a>
+        <a href="#expenses"  class="admin-nav" data-tab="expenses">Expenses</a>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+      <!-- Dashboard -->
+      <section id="tab-dashboard" class="admin-tab">
+        <h2>Dashboard</h2>
+        <div class="stats-grid" id="stats-grid"></div>
+        <div class="admin-section">
+          <header><h3>Recent Orders</h3></header>
+          <div id="recent-orders"></div>
+        </div>
+      </section>
+
+      <!-- Products -->
+      <section id="tab-products" class="admin-tab" hidden>
+        <h2>Products</h2>
+        <div class="admin-section">
+          <header>
+            <h3 id="product-form-title">Add Product</h3>
+            <button class="btn btn-sm btn-outline" id="reset-product-form" type="button">Reset</button>
+          </header>
+          <form id="product-form">
+            <input type="hidden" name="id">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+              <div class="field"><label>Name</label><input name="name" required></div>
+              <div class="field"><label>Category</label><input name="category" required></div>
+              <div class="field"><label>Price (USD)</label><input name="price" type="number" min="0" step="0.01" required></div>
+              <div class="field"><label>Stock</label><input name="stock" type="number" min="0" value="0" required></div>
+              <div class="field"><label>Material</label><input name="material" placeholder="e.g. 18k Gold"></div>
+              <div class="field"><label>Image</label><input name="image" type="file" accept="image/*"></div>
+            </div>
+            <div class="field"><label>Description</label><textarea name="description" rows="3"></textarea></div>
+            <div class="error-text" id="product-form-error"></div>
+            <button class="btn btn-gold" type="submit">Save Product</button>
+          </form>
+        </div>
+
+        <div class="admin-section">
+          <header><h3>All Products</h3></header>
+          <div class="table-wrap"><table class="data" id="products-table">
+            <thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th></th></tr></thead>
+            <tbody></tbody>
+          </table></div>
+        </div>
+      </section>
+
+      <!-- Orders -->
+      <section id="tab-orders" class="admin-tab" hidden>
+        <h2>Orders</h2>
+        <div class="admin-section">
+          <div class="table-wrap"><table class="data" id="orders-table">
+            <thead><tr><th>#</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Placed</th><th></th></tr></thead>
+            <tbody></tbody>
+          </table></div>
+        </div>
+      </section>
+
+      <!-- Expenses -->
+      <section id="tab-expenses" class="admin-tab" hidden>
+        <h2>Expense Tracker</h2>
+
+        <div class="stats-grid" id="exp-summary"></div>
+
+        <div class="admin-section">
+          <header><h3>Add Expense</h3></header>
+          <form id="expense-form" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;align-items:end">
+            <div class="field"><label>Type</label><input name="expense_type" required placeholder="Rent, Utilities…"></div>
+            <div class="field"><label>Amount</label><input name="amount" type="number" min="0" step="0.01" required></div>
+            <div class="field"><label>Date</label><input name="expense_date" type="date" required></div>
+            <div class="field"><label>Note</label><input name="note" placeholder="Optional"></div>
+            <button class="btn btn-gold" type="submit" style="grid-column:1/-1;justify-self:start">Add Expense</button>
+          </form>
+        </div>
+
+        <div class="admin-section">
+          <header>
+            <h3>Monthly Summary</h3>
+            <select id="exp-year" style="padding:.5rem .75rem;border:1px solid var(--line);border-radius:var(--radius)"></select>
+          </header>
+          <div id="monthly-bars" class="monthly-bars"></div>
+        </div>
+
+        <div class="admin-section">
+          <header><h3>All Expenses</h3></header>
+          <div class="table-wrap"><table class="data" id="expense-table">
+            <thead><tr><th>Date</th><th>Type</th><th>Amount</th><th>Note</th><th></th></tr></thead>
+            <tbody></tbody>
+          </table></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <style>
+    .monthly-bars { display: grid; grid-template-columns: repeat(12, 1fr); gap: .5rem; align-items: end; height: 220px; padding: 1rem 0; }
+    .monthly-bars .bar {
+      background: linear-gradient(to top, var(--gold-deep), var(--gold));
+      border-radius: var(--radius) var(--radius) 0 0;
+      position: relative; min-height: 4px;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+      transition: opacity .2s;
+    }
+    .monthly-bars .bar:hover { opacity: .85; }
+    .monthly-bars .bar span.label {
+      position: absolute; bottom: -22px; font-size: .7rem; color: var(--muted);
+    }
+    .monthly-bars .bar span.value {
+      position: absolute; top: -20px; font-size: .7rem; color: var(--ink-soft); font-weight: 600;
+    }
+  </style>
+
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

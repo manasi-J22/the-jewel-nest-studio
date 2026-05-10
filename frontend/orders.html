@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders — The Jewel Nest Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .order-card {
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
+      padding: 1.5rem; margin-bottom: 1.25rem;
+    }
+    .order-card header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--line); margin-bottom: 1rem;
+    }
+    .order-card .small { font-size: .8rem; }
+    .order-card .muted { color: var(--muted); }
+    .order-items { display: flex; flex-direction: column; gap: .5rem; }
+    .order-item {
+      display: flex; justify-content: space-between;
+      font-size: .9rem; color: var(--ink-soft);
+    }
+    .order-card footer {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      padding-top: 1rem; margin-top: 1rem; border-top: 1px solid var(--line);
+    }
+  </style>
+</head>
+<body>
+  <div id="header-slot"></div>
+  <main class="container">
+    <h1 style="padding-top:2.5rem;margin-bottom:2rem">My Orders</h1>
+    <div id="orders-root"></div>
+  </main>
+  <div id="footer-slot"></div>
+  <script src="js/api.js"></script>
+  <script src="js/orders.js"></script>
+</body>
+</html>
